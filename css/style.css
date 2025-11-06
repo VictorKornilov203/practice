@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+html, body {
+  height: 100%;        
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;   
+}
+
+main {
+  flex: 1;            
+}
+
+body {
+  font-family: 'Press Start 2P', cursive;
+  background-color: #0D0221;
+  color: #F2F2F2;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background: linear-gradient(90deg, #FF00FF, #00FFFF);
+  padding: 15px 0;
+  text-shadow: 0 0 10px #00FFFF;
+}
+
+.logo {
+  font-size: 22px;
+  animation: flicker 2s infinite alternate;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 12px;
+}
+
+.catalog .items {
+  display: flex;
+  flex-wrap: wrap;       
+  justify-content: center;
+  gap: 200px;            
+}
+
+
+.catalog .items .item img {
+  width: 100%;        
+  height: 200px;      
+  object-fit: cover;  
+  border-radius: 5px;
+}
+
+.item {
+  background-color: #1B032C;
+  border: 2px solid #FF00FF;
+  border-radius: 10px;
+  width: 220px;          
+  padding: 15px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #FF00FF;
+}
+
+
+button {
+  background-color: #00FFFF;
+  border: none;
+  padding: 8px 15px;
+  color: #0D0221;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background-color: #FF00FF;
+  color: #fff;
+  box-shadow: 0 0 10px #FF00FF;
+}
+
+footer {
+  margin-top: 50px;
+  padding: 20px;
+  border-top: 1px solid #FF00FF;
+  font-size: 10px;
+}
+
+.auth-container {
+  margin: 100px auto;
+  background-color: #1B032C;
+  border: 2px solid #FF00FF;
+  padding: 30px;
+  border-radius: 10px;
+  width: 300px;
+}
+
+.auth-container input {
+  display: block;
+  width: 90%;
+  margin: 10px auto;
+  padding: 10px;
+  border: 1px solid #FF00FF;
+  border-radius: 5px;
+  background-color: #0D0221;
+  color: #F2F2F2;
+}
+
+.auth-container button {
+  margin-top: 10px;
+}
+
+
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.product img {
+  width: 300px;
+  border: 2px solid #FF00FF;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.product .details {
+  max-width: 400px;
+}
+
+.product .details .price {
+  display: block;
+  font-size: 18px;
+  color: #00FFFF;
+  margin: 15px 0;
+  font-weight: bold;
+}
