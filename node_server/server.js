@@ -135,6 +135,22 @@ app.post('/api/auth/register', async (req, res) => {
   }
 });
 
+app.put('/api/users/:id', async (req, res) => {
+  try {
+    const users = await readJSON('users.json');
+    const index = users.findIndex(u => u.id === parseInt(req.params.id));
+    if (index !== -1) {
+      users[index] = { ...users[index], ...req.body, id: users[index].id };
+      await writeJSON('users.json', users);
+      res.json({ success: true, user: { ...users[index], password: undefined } });
+    } else {
+      res.status(404).json({ error: 'Пользователь не найден' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: 'Ошибка обновления пользователя' });
+  }
+});
+
 app.delete('/api/users/:id', async (req, res) => {
   try {
     const users = await readJSON('users.json');

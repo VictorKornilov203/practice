@@ -146,3 +146,210 @@ footer {
   margin: 15px 0;
   font-weight: bold;
 }
+
+.admin-section {
+  margin: 40px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.admin-section h2 {
+  color: #FF00FF;
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.btn {
+  background-color: #00FFFF;
+  border: 2px solid #00FFFF;
+  padding: 10px 20px;
+  color: #0D0221;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  text-decoration: none;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.btn:hover {
+  background-color: #FF00FF;
+  border-color: #FF00FF;
+  color: #fff;
+  box-shadow: 0 0 10px #FF00FF;
+}
+
+.admin-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.admin-item {
+  background-color: #1B032C;
+  border: 2px solid #FF00FF;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: 0.3s;
+}
+
+.admin-item:hover {
+  box-shadow: 0 0 15px #FF00FF;
+}
+
+.admin-item img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 5px;
+  border: 1px solid #00FFFF;
+}
+
+.admin-item-info {
+  flex: 1;
+  text-align: left;
+}
+
+.admin-item-info h3 {
+  color: #00FFFF;
+  margin: 0 0 10px 0;
+  font-size: 12px;
+}
+
+.admin-item-info p {
+  margin: 5px 0;
+  font-size: 8px;
+  line-height: 1.5;
+}
+
+.admin-item-info .price {
+  color: #FF00FF;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.admin-item-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-btn, .delete-btn {
+  background-color: #00FFFF;
+  border: none;
+  padding: 8px 15px;
+  color: #0D0221;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  white-space: nowrap;
+}
+
+.edit-btn:hover {
+  background-color: #00FF00;
+  box-shadow: 0 0 10px #00FF00;
+}
+
+.delete-btn {
+  background-color: #FF00FF;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #FF0000;
+  box-shadow: 0 0 10px #FF0000;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+  background-color: #1B032C;
+  margin: 5% auto;
+  padding: 30px;
+  border: 2px solid #FF00FF;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+}
+
+.modal-content h2 {
+  color: #00FFFF;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.close, .close-user {
+  color: #FF00FF;
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.close:hover, .close-user:hover {
+  color: #00FFFF;
+  text-shadow: 0 0 10px #00FFFF;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #FF00FF;
+  border-radius: 5px;
+  background-color: #0D0221;
+  color: #F2F2F2;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
+.modal-content textarea {
+  min-height: 100px;
+  resize: vertical;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+}
+
+.modal-content button[type="submit"] {
+  background-color: #00FFFF;
+  border: none;
+  padding: 12px 20px;
+  color: #0D0221;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  margin-top: 10px;
+}
+
+.modal-content button[type="submit"]:hover {
+  background-color: #FF00FF;
+  color: #fff;
+  box-shadow: 0 0 10px #FF00FF;
+}

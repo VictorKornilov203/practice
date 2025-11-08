@@ -12,6 +12,7 @@
   <nav>
     <a href="index.html">Главная</a>
     <a href="auth.html">Авторизация</a>
+    <a href="admin.html" id="admin-link" style="display: none;">Админка</a>
   </nav>
 </header>
 
@@ -24,8 +25,17 @@
 </main>
 
 <footer>
-  <p>Практическая работа 2 // Корнилов Виктор 9-ИС203 // Магазин ретро-игр</p>
+  <p>Практическая работа 3 // Корнилов Виктор 9-ИС203 // Магазин ретро-игр</p>
 </footer>
 <script type="module" src="js/main.js"></script>
+<script>
+  const user = localStorage.getItem('currentUser');
+  if (user) {
+    const userData = JSON.parse(user);
+    if (userData.role === 'admin') {
+      document.getElementById('admin-link').style.display = 'inline';
+    }
+  }
+</script>
 </body>
 </html>

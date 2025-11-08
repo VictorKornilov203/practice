@@ -1,6 +1,9 @@
-import { getCurrentUser } from '../server/auth.js';
-
 const API_URL = 'http://localhost:3000/api';
+
+function getCurrentUser() {
+  const user = localStorage.getItem('currentUser');
+  return user ? JSON.parse(user) : null;
+}
 
 const user = getCurrentUser();
 if (!user || user.role !== 'admin') {
@@ -66,13 +69,18 @@ async function loadUsers() {
       <div class="admin-item-info">
         <h3>${u.name}</h3>
         <p>Логин: ${u.login}</p>
-        <p>Роль: ${u.role}</p>
+        <p>Роль: ${u.role === 'admin' ? 'Администратор' : 'Пользователь'}</p>
       </div>
       <div class="admin-item-actions">
+        <button class="edit-btn" data-id="${u.id}">Редактировать</button>
         <button class="delete-btn" data-id="${u.id}">Удалить</button>
       </div>
     </div>
   `).join('');
+
+  container.querySelectorAll('.edit-btn').forEach(btn => {
+    btn.addEventListener('click', () => editUser(btn.dataset.id));
+  });
 
   container.querySelectorAll('.delete-btn').forEach(btn => {
     btn.addEventListener('click', () => deleteUser(btn.dataset.id));
@@ -89,6 +97,8 @@ document.getElementById('add-product-btn').addEventListener('click', () => {
 document.getElementById('add-user-btn').addEventListener('click', () => {
   userModalTitle.textContent = 'Добавить пользователя';
   userForm.reset();
+  document.getElementById('user-id').value = '';
+  document.getElementById('user-password').required = true;
   userModal.style.display = 'block';
 });
 
@@ -110,6 +120,23 @@ async function deleteProduct(id) {
   
   await fetch(`${API_URL}/products/${id}`, { method: 'DELETE' });
   loadProducts();
+}
+
+async function editUser(id) {
+  const response = await fetch(`${API_URL}/users`);
+  const users = await response.json();
+  const user = users.find(u => u.id === parseInt(id));
+  
+  if (user) {
+    userModalTitle.textContent = 'Редактировать пользователя';
+    document.getElementById('user-id').value = user.id;
+    document.getElementById('user-login').value = user.login;
+    document.getElementById('user-password').value = '';
+    document.getElementById('user-password').required = false;
+    document.getElementById('user-name').value = user.name;
+    document.getElementById('user-role').value = user.role;
+    userModal.style.display = 'block';
+  }
 }
 
 async function deleteUser(id) {
@@ -167,26 +194,43 @@ productForm.addEventListener('submit', async (e) => {
 userForm.addEventListener('submit', async (e) => {
   e.preventDefault();
   
+  const id = document.getElementById('user-id').value;
   const login = document.getElementById('user-login').value;
   const password = document.getElementById('user-password').value;
   const name = document.getElementById('user-name').value;
   const role = document.getElementById('user-role').value;
 
-  const userData = { login, password, name, role };
-  
-  const response = await fetch(`${API_URL}/auth/register`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(userData)
-  });
+  let response;
+  let result;
 
-  const result = await response.json();
+  if (id) {
+    const userData = { login, name, role };
+    if (password) {
+      userData.password = password;
+    }
+    
+    response = await fetch(`${API_URL}/users/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userData)
+    });
+    result = await response.json();
+  } else {
+    const userData = { login, password, name, role };
+    
+    response = await fetch(`${API_URL}/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userData)
+    });
+    result = await response.json();
+  }
   
   if (result.success) {
     userModal.style.display = 'none';
     loadUsers();
   } else {
-    alert(result.error);
+    alert(result.error || 'Ошибка сохранения пользователя');
   }
 });
 
